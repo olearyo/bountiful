@@ -1,31 +1,7 @@
 <?php
+    include("includes/header.php");
+
 ?>
-
-
-<!DOCTYPE HTML>
-<html>
-<head>
-    <link rel="stylesheet" href="css/core.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/xqv5gtt.css">
-
-
-
-</head>
-<body>
-
-  <header>
-    <nav>
-    <a id="logo" href="home.php">bountiful</a>
-
-        <p class="menu">
-            <a href="home.php">HOME</a>
-            <a href="about.php">ABOUT</a>
-            <a href="menu.php">MENU</a>
-            <a href="register.php">REGISTER</a>
-            <a href="login.php">LOGIN</a>
-        </p>
-    </nav>
-  </header>
 
 
 
@@ -65,15 +41,19 @@
 
   <h1>Latest news</h1>
        <div class="news">
-            <div class="news-box">
-                <p>Updated needs list for Ontario</p>
+            <div class="news-box" id="1">
+                <div class="news-image"></div>
+
+                <h3>Updated needs list for Ontario</h3>
+                <p>Check out the latest updated needs for Ontario this coming winter. </p>
+                <p class="date">26/11/2019</p>
             </div>
-            <div class="news-box">
+            <!-- <div class="news-box" id="2">
                 <p>Menu of the week</p>
             </div>
-            <div class="news-box">
+            <div class="news-box" div="3">
                 <p>HungerCount 2019</p>
-            </div>
+            </div> -->
         </div>
 
 
@@ -90,8 +70,8 @@
 
 
   </main>
-  <!-- <footer>
-    <p>subscribe!</p>
-  </footer> -->
-</body>
-</html>
+
+  <?php
+    include("includes/footer.php");
+
+?>
