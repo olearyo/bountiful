@@ -6,29 +6,29 @@
 
 <style>
 * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
 .slides {display: none}
-img {vertical-align: middle;}
+img {
+  vertical-align: middle;
+  width: 100%;}
 
-/* Slideshow container */
+/* SLIDES */
 .slideshow-box {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
 
-/* Next & previous buttons */
+/* LEFT & RIGHT */
 .fa-chevron-circle-left, .fa-chevron-circle-right, .fas{
   cursor: pointer;
   position: absolute;
   top: 50%;
   width: auto;
-  padding: 16px;
+  padding: 20px;
   margin-top: -22px;
   font-size: 50px;
   color: #09967D;
   cursor: pointer;
-  user-select: none;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
@@ -36,22 +36,25 @@ img {vertical-align: middle;}
 
 .fa-chevron-circle-right {
   right: 0;
-  border-radius: 3px 0 0 3px;
-}
+  }
+
+.fa-chevron-circle-left {
+  left: 0;
+  }
 
 
 .fas:hover {
   color: #FEA3A6;
 }
 
-/* Fading animation */
+/* FADE */
 .fade {
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
 }
 
 @keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .5} 
   to {opacity: 1}
 }
 
@@ -84,10 +87,7 @@ img {vertical-align: middle;}
 
 
 
-
-
 </div>
-<br>
 
 
 
@@ -107,8 +107,8 @@ function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("slides");
   var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
+  // if (n > slides.length) {slideIndex = 1}    
+  // if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";  
   }
