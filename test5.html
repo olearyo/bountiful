@@ -1,0 +1,124 @@
+<head>
+    <style>
+
+.newsletterBar {
+    padding: 15px 20px;
+    border-top: 1px solid #8a70be;
+    border-bottom: 1px solid #8a70be;
+    text-align: center
+}
+
+.newsletterBar__close {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 1;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 16px;
+    font-family: "Galano Grotesque W00 Medium", Arial, sans-serif
+}
+
+.newsletterBar__close:hover {
+    color: #3a3a3a
+}
+
+.newsletter__label {
+    vertical-align: middle;
+    max-width: 300px;
+    font-size: 18px;
+    font-family: "Galano Grotesque W00 Regular", Arial, sans-serif;
+    color: #fff
+}
+
+.newsletter__controls,
+.newsletter__label,
+.numInputWrapper input,
+.numInputWrapper span {
+    display: inline-block
+}
+
+.newsletter__input-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin: 0 10px
+}
+
+.newsletter__input-wrapper .newsletter__input--email {
+    width: 270px;
+    height: 42px;
+    margin: 0;
+    font-size: 16px;
+    border: 1px solid #d2d2d4;
+    border-radius: 8px
+}
+
+.newsletter__input-wrapper .newsletter__input--email.error {
+    margin-bottom: 0
+}
+
+button.newsletter__input--submit {
+    width: 144px;
+    height: 42px;
+    margin: 0;
+    vertical-align: middle
+}
+
+button.newsletter__input--submit:focus,
+button.newsletter__input--submit:hover {
+    background-color: #fd7942;
+    border: 2px solid #fc4c02;
+    color: #fff
+}
+
+button.newsletter__input--submit:active {
+    background-color: #fd7942;
+    border-color: #fd7942;
+    color: #ffe8de
+}
+
+button.newsletter__input--submit:disabled {
+    background-color: #ebebee;
+    border-color: #ebebee;
+    color: #747475
+}
+
+.newsletterBar--sticky {
+    position: fixed;
+    bottom: -80px;
+    z-index: 100;
+    width: 100%;
+    max-width: 100%;
+    background: #2e008b
+}
+
+.newsletterBar--sticky .newsletterBar__close {
+    display: block;
+    font-family: "Galano Grotesque W00 Regular", Arial, sans-serif;
+    font-size: 32px;
+    top: 15px
+}
+
+.newsletterBar--sticky .newsletterBar__close:hover {
+    color: #fff
+}
+
+
+</style>
+</head>
+<body>
+        <div class="newsletterBar">
+                <div class="newsletter__label"><h2>Subscribe to stay in the loop!</h2></div>
+                <form action="process-subscribe.php" method="POST">
+                    <div class="newsletter__input-wrapper newsletter__controls">
+                        
+                        <input class="subscribe-field" type="email" name="email" placeholder="email" required />
+                    </div>
+                    <input class="newsletter__input--submit" type="submit" name="submit" value="SUBSCRIBE"/>
+            
+                </form>
+            
+            </div>
+</body>
