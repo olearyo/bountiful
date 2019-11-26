@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
     include("includes/header.php");
 
 ?>
@@ -15,13 +15,13 @@
 
   <h1>How it works:</h1>
        <div class="showcase">
-            <div class="one">
+            <div>
                 <img class="icons" src="img/choose.svg"/>
             </div>
-            <div class="two">
+            <div>
                 <img class="icons" src="img/deliver.svg"/>
             </div>
-            <div class="three">
+            <div>
                 <img class="icons" src="img/donate.svg"/>
             </div>
         </div>
@@ -39,35 +39,57 @@
         </div>
 
 
+
+<div class="gray-bg">
+
   <h1>Latest news</h1>
-       <div class="news">
-            <div class="news-box" id="1">
-                <div class="news-image"></div>
 
-                <h3>Updated needs list for Ontario</h3>
-                <p>Check out the latest updated needs for Ontario this coming winter. </p>
-                <p class="date">26/11/2019</p>
-            </div>
-            <!-- <div class="news-box" id="2">
-                <p>Menu of the week</p>
-            </div>
-            <div class="news-box" div="3">
-                <p>HungerCount 2019</p>
-            </div> -->
-        </div>
+  <section class="news">
+        <article class="news-box">
 
+          <div class="news-img one"></div>
+          <a href="#" class="news-link">
+             <div class="news-hover"></div>
+           </a>
+          <div class="news-content">
+            <h3 class="news-title">Ontario Needs List Updated</h3>
+            <p>The needs list for Ontario has been updated for winter.</p>
+            <p class="news-published">Published <a class="news-date" title="date">Nov 20th</a></p>
+          </div>
+        </article>
 
 
+        <article class="news-box">
+
+          <div class="news-img two"></div>
+          <a href="#" class="news-link">
+             <div class="news-hover"></div>
+           </a>
+          <div class="news-content">
+            <h3 class="news-title">Menu of The Week</h3>
+            <p>Our updated menu for the coming week is here! </p>
+            <p class="news-published">Published <a class="news-date" title="date">Nov 12th</a></p>
+          </div>
+        </article>
 
 
 
+        <article class="news-box">
 
-        <div class="news">
-            <div class="four"><p>two</p></div>
-            <div class="five"><p>three</p></div>
-            <div class="six"><p>four</p></div>
-        </div>
+          <div class="news-img three"></div>
+          <a href="#" class="news-link">
+             <div class="news-hover"></div>
+           </a>
+          <div class="news-content">
+            <h3 class="news-title">HungerStrike 2019</h3>
+            <p>An initiative launched by food banks Canada</p>
+            <p class="news-published">Published <a class="news-date" title="date">Nov 20th</a></p>
+          </div>
+        </article>
 
+    </section>
+    
+</div>
 
   </main>
 

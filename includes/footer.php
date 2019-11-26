@@ -6,12 +6,17 @@
 
 <a id="footer-logo" href="home.php">bountiful</a>
 
+<div class="newsletter">
+    <h2 class="white">Subscribe to stay in the loop!</h2>
+    <form action="process-subscribe.php" method="POST">
 
-    <p class="social-menu">
-        <a href="#"><img class="socmed" src="img/instagram.png"/></a>
-        <a href="#"><img class="socmed" src="img/facebook.png"/></a>
-        <a href="#"><img class="socmed" src="img/twitter.png"/></a>
-    </p>
+        <input class="subscribe-field" type="email" name="email" placeholder="email" required />
+        <input class="subscribe-button" type="submit" name="submit" value="SUBSCRIBE"/>
+
+    </form>
+
+</div>
+
 
 </footer>
 </body>
