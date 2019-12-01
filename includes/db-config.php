@@ -3,7 +3,6 @@
 
 
 
-
 try {
     $dsn = "mysql:host=localhost;dbname=bountiful;charset=utf8mb4";
     $dbusername = "bountiful_admin";

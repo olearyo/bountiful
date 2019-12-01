@@ -1,7 +1,10 @@
 <?php session_start();
     include("includes/header.php");
 
+    include("includes/db-config.php");
 ?>
+
+
 
 
 <div class="form-box">
@@ -13,13 +16,21 @@
             
 
                     <div class="form-input">
+                    <label for="mealPlanId">Choose your plan</label>
+
+                    <select class="selectStye" name="mealPlanId">
+                        <option name="mealPlanId" value="1">Quick N Easy</option>
+                        <option name="mealPlanId" value="2">Family</option>
+                        <option name="mealPlanId" value="3">Veggie</option>
+                    </select>
+
                     <label for="mealNum">Meals per Week</label>
                             <input type="radio" name="mealNum" value="2" checked> 2
                             <input type="radio" name="mealNum" value="4"> 4
                             <input type="radio" name="mealNum" value="6"> 6
                     </div>
                     <hr>
-                    <h2>$6.99 per portion</h2>
+                    <h2 class="green">$6.99 per portion</h2>
                     <hr>
 
                     <div class="continue">
@@ -30,13 +41,21 @@
     <fieldset class="hidden">
         <h2 class="green">Delivery Details</h2>
                 <div class="form-input half">
+<?php
+if(isset($_SESSION['userId'])){
+
+$stmt = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = ?");
+$stmt->execute([$_SESSION['userId']]);
+$row = $stmt->fetch();
+}?>
+
                     <label for="firstName">First Name</label> 
-                    <input id="firstName" type="text" name="firstName" required />   
+                    <input id="firstName" type="text" name="firstName" value="<?php if(isset($_SESSION['userId'])){echo($row["firstName"]);} ?>" required />   
                 </div>
 
                 <div class="form-input half">
                     <label for="lastName">Last Name</label> 
-                    <input id="lastName" type="text" name="lastName" required />   
+                    <input id="lastName" type="text" name="lastName" value="<?php if(isset($_SESSION['userId'])){echo($row["lastName"]);} ?>" required />   
                 </div>
 
                 <div class="form-input">
@@ -87,7 +106,8 @@
 
 
                     <div class="continue">
-                        <button class="button" onclick="next()">CONTINUE</button>
+                        <button class="button button-center" onclick="back()">GO BACK</button>
+                        <button class="button button-center" onclick="next()">CONTINUE</button>
                     </div>
     </fieldset>
 
@@ -110,9 +130,11 @@
                 </div>
 
 
-                    <div class="continue">
+                <div class="continue">
+                        <button class="button" onclick="back()">GO BACK</button>
                         <button class="button" onclick="next()">CONTINUE</button>
                     </div>
+
     </fieldset>
 
     <fieldset class="hidden">
@@ -146,8 +168,6 @@
         		</div>
     </fieldset>
 
-
-
                 
             </div>
 </form>
@@ -159,11 +179,11 @@
     console.log("connected");
 
 // GET DOM TAG
-var getTag = document.getElementsByTagName("fieldset");
+var getForm = document.getElementsByTagName("fieldset");
 
 // ACTIVE FIELDSET & FIELDSET COUNT
 var formNum= 0;
-var fieldset = getTag[formNum];
+var fieldset = getForm[formNum];
 fieldset.className = "show";
 
 
@@ -171,11 +191,11 @@ fieldset.className = "show";
 function next() {
     var validation = true;
 
-    var forms = document.querySelectorAll("fieldset")[formNum];
-    var formsCount = forms.querySelectorAll("input").length;
+    var form = document.querySelectorAll("fieldset")[formNum];
+    var formCount = form.querySelectorAll("input").length;
 
-    for (i = 0; i < formsCount; ++i) {
-        var formStyle = forms.querySelectorAll("input")[i];
+    for (i = 0; i < formCount; ++i) {
+        var formStyle = form.querySelectorAll("input")[i];
         if (formStyle.getAttribute("type") === "button") {
             // nothing happens
         } else {
@@ -191,21 +211,21 @@ function next() {
     };
     if (validation === true) {
         // goes to the next step
-        var selection = getTag[formNum];
+        var selection = getForm[formNum];
         selection.className = "hidden";
         formNum = formNum + 1;
-        var selection = getTag[formNum];
+        var selection = getForm[formNum];
         selection.className = "show";
        
     }
 };
 
-// // goes one step back
-// function back() {
-//     getTag[formNum].className = "hidden";
-//     formNum = formNum - 1;
-//     getTag[formNum].className = "show";
-// };
+// goes one step back
+function back() {
+    getForm[formNum].className = "hidden";
+    formNum = formNum - 1;
+    getForm[formNum].className = "show";
+};
 
 console.log("DONE");
 </script>

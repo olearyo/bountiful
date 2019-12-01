@@ -1,13 +1,24 @@
 <?php session_start();
     include("includes/header.php");
 
+    include("includes/db-config.php");
+    
+
+    $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = ?");
+    
+    $stmt->execute([$_SESSION['userId']]);
+    while($row = $stmt->fetch()) { ?>
+
 ?>
 
 <div class ="head">
-<h1>Hi Nella,</h1>
+<h1>Hi <?php echo($row["firstName"]); ?>,</h1>
 <h2>You can find your menu of the week <a href="menu.php">here</a></h2>
 </div>
 
+<?php
+    }
+?>
 <div class="form-box">
         <img class="profile-img" src="img/profile.png"/>
 
@@ -61,6 +72,10 @@
   </main>
 
   <?php
+
+
+
+
     // include("includes/footer.php");
 
 ?>
