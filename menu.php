@@ -4,13 +4,17 @@ include("includes/header.php");
 include("includes/db-config.php");
 
 ?>
+<head>
+  <title>Menu</title>
+</head>
 
 
 <div class="gray-bg">
+  <h1>Menu of the Week</h1>
   <div class="menuTitle">
-    <h1 id="quick" onclick="swichMenu(event)">Quick & Easy</h1>
-    <h1 id="veggie" onclick="swichMenu(event)">Veggie</h1>
-    <h1 id="family" onclick="swichMenu(event)">Family</h1>
+    <h2 class="grey" id="quick" onclick="swichMenu(event)">Quick & Easy</h1>
+    <h2 class="grey" id="veggie" onclick="swichMenu(event)">Veggie</h1>
+    <h2 class="grey" id="family" onclick="swichMenu(event)">Family</h1>
   </div>
 
   <section id="quickPlan" class="boxy">
@@ -31,7 +35,7 @@ while($row = $stmt->fetch()) { ?>
           <div class="box-content">
             <h3 class="box-title"><?php echo($row["title"]); ?></h3>
             <p><?php echo($row["description"]); ?></p>
-            <p class="box-subheader">Ingredient1, ingredient2, ingredient3</p>
+            <p class="box-subheader"><?php echo($row["tags"]); ?></p>
           </div>
         </article>
 
@@ -58,7 +62,7 @@ while($row = $stmt->fetch()) { ?>
           <div class="box-content">
             <h3 class="box-title"><?php echo($row["title"]); ?></h3>
             <p><?php echo($row["description"]); ?></p>
-            <p class="box-subheader">Ingredient1, ingredient2, ingredient3</p>
+            <p class="box-subheader"><?php echo($row["tags"]); ?></p>
           </div>
         </article>
 
@@ -87,7 +91,7 @@ while($row = $stmt->fetch()) { ?>
           <div class="box-content">
             <h3 class="box-title"><?php echo($row["title"]); ?></h3>
             <p><?php echo($row["description"]); ?></p>
-            <p class="box-subheader">Ingredient1, ingredient2, ingredient3</p>
+            <p class="box-subheader"><?php echo($row["tags"]); ?></p>
           </div>
         </article>
 
@@ -108,14 +112,26 @@ while($row = $stmt->fetch()) { ?>
       var family = document.getElementById("familyPlan");
       var veggie = document.getElementById("veggiePlan");
       var quick = document.getElementById("quickPlan");
+
+      var familyT = document.getElementById("family");
+      var veggieT = document.getElementById("veggie");
+      var quickT = document.getElementById("quick");
+      
       if(e.target.getAttribute("id")=='quick'){
+          e.target.setAttribute("class", "clicked");
+          familyT.setAttribute("class", "grey");
+          veggieT.setAttribute("class", "grey");
+
           veggie.setAttribute("class", "hidden");
           family.setAttribute("class", "hidden");
-        if(quick.classList.contains("hidden") ){
-          family.classList.remove("hidden");
-          family.setAttribute("class", "boxy");
+          if(quick.classList.contains("hidden") ){
+          quick.classList.remove("hidden");
+          quick.setAttribute("class", "boxy");
         }
       }else if(e.target.getAttribute("id")=='veggie'){
+        e.target.setAttribute("class", "clicked");
+        familyT.setAttribute("class", "grey");
+        quickT.setAttribute("class", "grey");
 
           quick.setAttribute("class", "hidden");
           family.setAttribute("class", "hidden");
@@ -125,6 +141,9 @@ while($row = $stmt->fetch()) { ?>
         }
 
       }else if(e.target.getAttribute("id")=='family'){
+        e.target.setAttribute("class", "clicked");
+        quickT.setAttribute("class", "grey");
+        veggieT.setAttribute("class", "grey");
 
           quick.setAttribute("class", "hidden");
           veggie.setAttribute("class", "hidden");
@@ -136,4 +155,8 @@ while($row = $stmt->fetch()) { ?>
       }
     }
     </script>
-  
+    </body>
+    <?php
+    include("includes/footer.php");
+
+?>

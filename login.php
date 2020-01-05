@@ -1,6 +1,10 @@
 <?php session_start();
     include("includes/header.php");
 ?>
+<head>
+  <title>Login</title>
+</head>
+
 
 
 <div class="form-box">
@@ -30,6 +34,6 @@
   </main>
 
   <?php
-    // include("includes/footer.php");
+    include("includes/footer.php");
 
 ?>

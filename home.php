@@ -2,41 +2,52 @@
     include("includes/header.php");
 
 ?>
-
+<head>
+  <title>Home</title>
+</head>
 
 
     <div class="hero-image">
-      <h1 class="hero-title">Food is best served together</h1>
+        <div class="form-input">
+          <h1 class="hero-title">share the love of food</h1>
+          <div class="button-center">
+            <button class="button smaller" onclick="window.location.href = 'register.php';">LET'S GO</button>
+</div>
+        </div>
 
+
+				</div>
     </div>
 
 
   <main>
 
-  <h1>How it works:</h1>
+  <h1>How it works</h1>
        <div class="showcase">
             <div>
-                <img class="icons" src="img/choose.svg"/>
+                <img class="icons" src="img/icons/menu.png"/>
+                <h2>Choose your meal plan</h2>
+                <!-- <p class="showcase-item">You can choose from a variety of meal plans as well as set your delivery times.</p> -->
+
+
             </div>
+            
             <div>
-                <img class="icons" src="img/deliver.svg"/>
+                <img class="icons" src="img/icons/location-pin.png"/>
+                <h2>Select a foodbank near you</h2>
+                <!-- <p class="showcase-item">Based on your delivery location, we will provide several foodbanks to choose from.</p> -->
+
             </div>
+
             <div>
-                <img class="icons" src="img/donate.svg"/>
+                <img class="icons" src="img/icons/credit-card.png"/>
+                <h2>Donate! it's a win-win</h2>
+                <!-- <p class="showcase-item">You get to either donate the same meal plan or its monetary value.</p> -->
             </div>
         </div>
 
-        <div class="showcase-title">
-            <div class="choose">
-                <h2>Choose your meal plan</h2>
-            </div>
-            <div class="deliver">
-                <h2>Select a foodbank near you</h2>
-            </div>
-            <div class="donate">
-                <h2>Donate! it's a win-win</h2>
-            </div>
-        </div>
+
+
 
 
 
@@ -62,11 +73,9 @@ while($row = $stmt->fetch()) { ?>
     <article class="container-box">
 
     <img class="box-img" src="<?php echo($row["imgPath"]); ?>"/>
-      <a href="#" class="box-link">
         <div class="box-hover"></div>
-      </a>
       <div class="box-content">
-        <h3 class="box-title"><?php echo($row["title"]); ?></h3>
+      <a href="<?php echo($row["link"]); ?>" class="box-link"><h3 class="box-title"><?php echo($row["title"]); ?></h3></a>
         <p><?php echo($row["description"]); ?></p>
         <p class="box-subheader"><?php echo($row["datePublished"]); ?></p>
       </div>
@@ -76,60 +85,11 @@ while($row = $stmt->fetch()) { ?>
 }
 ?>
 
-<!-- <div class="gray-bg">
 
-  <h1>Latest news</h1>
-
-  <section class="boxy">
-        <article class="container-box">
-
-          <img class="box-img" src="img/news1.jpg"/>
-          <a href="#" class="box-link">
-             <div class="box-hover"></div>
-           </a>
-          <div class="box-content">
-            <h3 class="box-title">Ontario Needs List Updated</h3>
-            <p>The needs list for Ontario has been updated for winter.</p>
-            <p class="box-subheader">Published <a class="box-date" title="date">Nov 20th</a></p>
-          </div>
-        </article>
-
-
-        <article class="container-box">
-
-        <img class="box-img" src="img/news2.jpg"/>
-          <a href="#" class="news-link">
-             <div class="box-hover"></div>
-           </a>
-          <div class="box-content">
-            <h3 class="box-title">Menu of The Week</h3>
-            <p>Our updated menu for the coming week is here! </p>
-            <p class="box-subheader">Published <a class="box-date" title="date">Nov 12th</a></p>
-          </div>
-        </article>
-
-
-
-        <article class="container-box">
-
-        <img class="box-img" src="img/news3.jpg"/>
-          <a href="#" class="box-link">
-             <div class="box-hover"></div>
-           </a>
-          <div class="box-content">
-            <h3 class="box-title">HungerStrike 2019</h3>
-            <p>An initiative launched by food banks Canada</p>
-            <p class="box-subheader">Published <a class="box-date" title="date">Nov 20th</a></p>
-          </div>
-        </article>
-
-    </section>
-    
-</div> -->
 
   </main>
 
   <?php
-    include("includes/footer.php");
+    include("includes/footer-home.php");
 
 ?>

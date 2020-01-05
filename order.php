@@ -3,7 +3,9 @@
 
     include("includes/db-config.php");
 ?>
-
+<head>
+  <title>Order Meal Plan</title>
+</head>
 
 
 
@@ -25,12 +27,18 @@
                     </select>
 
                     <label for="mealNum">Meals per Week</label>
-                            <input type="radio" name="mealNum" value="2" checked> 2
-                            <input type="radio" name="mealNum" value="4"> 4
-                            <input type="radio" name="mealNum" value="6"> 6
+                            <div class="radio"><input type="radio" name="mealNum" value="2" checked><span>2</div>
+                            <div class="radio"><input type="radio" name="mealNum" value="4"><span>4</div>
+                            <div class="radio"><input type="radio" name="mealNum" value="6"><span>6</div>
                     </div>
                     <hr>
-                    <h2 class="green">$6.99 per portion</h2>
+<?php
+
+$stmt = $pdo->prepare("SELECT * FROM `mealPlanOrder`");
+$stmt->execute();
+$row = $stmt->fetch();
+?>
+                    <h2 class="green">$<?php echo($row["shipping"]); ?> shipping total</h2>
                     <hr>
 
                     <div class="continue">
@@ -84,7 +92,7 @@ $row = $stmt->fetch();
 
                 <div class="form-input half">
                     <label for="postalCode">Postal Code</label> 
-                    <input id="postalCode" type="text" name="postalCode" placeholder="XXXXXX" required />   
+                    <input id="postalCode" type="text" name="postalCode" placeholder="L5B1N8" required />   
                 </div>
 
                 <div class="form-input">
@@ -113,19 +121,26 @@ $row = $stmt->fetch();
 
     <fieldset class="hidden">
             <h2 class="green">Select a foodbank</h2>
-            
+
                 <div class="form-input">
                     <label for="foodbankId">Foodbanks near you</label>
-                            <input type="radio" name="foodbankId" value="1" checked> The Mississauga Food Bank
-                            <input type="radio" name="foodbankId" value="2"> Eden Community Food Bank
-                            <input type="radio" name="foodbankId" value="3"> The Compass
+<?php
+$stmt = $pdo->prepare("SELECT * FROM `foodbanks`");
+$stmt->execute();
+while($row = $stmt->fetch()) { ?>
+                            <input type="radio" name="foodbankId" value="<?php echo($row["foodbankId"]); ?>" checked><span><?php echo($row["foodbankName"]); ?></span>
+                            <legend class="indented"><?php echo($row["foodbankAddress1"]); ?></legend>
+                            <legend class="indented"><?php echo($row["foodbankAddress2"]); ?></legend>
+                            <hr>
+                            <?php
+}?>
                 </div>
 
-                <div class="form-input half">
+                <div class="form-input">
                     <label for="donationType">How would you like to donate?</label> 
                     <select name="donationType">
-                        <option value="meal">Meal per Meal</option>
-                        <option value="monetary">Monetary Value</option>
+                        <option value="Meal per Meal">Meal per Meal</option>
+                        <option value="Monetary Value">Monetary Value</option>
                     </select>
                 </div>
 
@@ -187,7 +202,7 @@ var fieldset = getForm[formNum];
 fieldset.className = "show";
 
 
-// VALIDATION LOOP & NEXT FUNCTION
+// VALIDATION LOOP & GO NEXT FIELDSET FUNCTION
 function next() {
     var validation = true;
 
@@ -197,20 +212,23 @@ function next() {
     for (i = 0; i < formCount; ++i) {
         var formStyle = form.querySelectorAll("input")[i];
         if (formStyle.getAttribute("type") === "button") {
-            // nothing happens
+            //get active button on fieldset
         } else {
             if (formStyle.value === "") {
                 formStyle.className = "error";
                 validation = false;
+                // goes red
             } else {
                 if (validation === false) {} else {
                     validation = true;
+                // goes green
                 }
             }
         };
     };
+
     if (validation === true) {
-        // goes to the next step
+        // goes to the next fieldset
         var selection = getForm[formNum];
         selection.className = "hidden";
         formNum = formNum + 1;
@@ -220,7 +238,7 @@ function next() {
     }
 };
 
-// goes one step back
+// go back to previous fieldset
 function back() {
     getForm[formNum].className = "hidden";
     formNum = formNum - 1;
@@ -230,6 +248,6 @@ function back() {
 console.log("DONE");
 </script>
   <?php
-    // include("includes/footer.php");
+    include("includes/footer.php");
 
 ?>

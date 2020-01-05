@@ -15,6 +15,15 @@ footer{
 
 }
 
+#newsletter{
+  width:30%;
+  text-align: center;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+}
+
+
 .top-1{
     display:flex;
     flex-grow:1;
@@ -40,16 +49,29 @@ footer{
     color: white;
 }
 
-.fab{
-  font-size:30px;
-  color:white;
-  margin-left:10px;
-  margin-right:10px;
+.subscribe-field, .subscribe-label{
+  height:50px;
+  width:150px;
+  flex:1;
+  margin-right: 10px;
 }
 
-.fab:hover {
-  color: #FEA3A6;
+.subscribe-button{
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #FEA3A6;
+  font-size: 1.2em;
+  color: white;
+  text-transform: uppercase;
 }
+
+@media screen and (max-width: 600px) {
+  #newsletter{
+      width:100%;
+  }
+  }
 
 
     </style>
@@ -64,16 +86,18 @@ footer{
 
 
 <div id="newsletter" class="top-2">
-
-        <div class="form-container">
-          <div class="form-input half">
-            <i class="fab fa-facebook-square"></i>
-          </div>
-          <div class="form-input half">
-            <i class="fab fa-instagram"></i>
-          </div>
+<h3 class="whiteLabel" id="confirmation"></h3>
+    <form action="process-subscribe.php" method="POST" onsubmit="return subscribe(this);">
+        <div class="form-container subscribe">
+        <label class="whiteLabel" for="subscribe-field">Subscribe for news & updates</label>
+        <div class="form-input half">
+            <input class="subscribe-field" name="email" placeholder=" Your Email" type="text">
         </div>
-
+        <div class="form-input half">
+            <input class="subscribe-button" value="subscribe" type="submit">
+            </div>
+        </div>
+    </form>
 </div>
 
 <div class="top-3">
@@ -111,3 +135,5 @@ console.log("subscription connected");
 
 </body>
 </html>
+
+

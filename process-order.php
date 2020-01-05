@@ -1,4 +1,7 @@
-<?php session_start();
+<?php 
+ob_start();
+session_start();
+include("includes/db-config.php");
 
 $mealPlanId = (int)$_POST['mealPlanId'];
 $mealNum = (int)$_POST['mealNum'];
@@ -16,7 +19,7 @@ $startDate = $_POST['startDate'];
 $deliveryTime = $_POST['deliveryTime'];
 
 $foodbankId = (int)$_POST['foodbankId'];
-$donationType = (int)$_POST['donationType'];
+$donationType = $_POST['donationType'];
 $cardName = $_POST['cardName'];
 $cardNum = $_POST['cardNum'];
 $expDate = $_POST['expDate'];
@@ -25,27 +28,21 @@ $cvvNum = (int)$_POST['cvvNum'];
 
 
 
-include("includes/db-config.php");
 
 $stmt = $pdo->prepare("INSERT INTO `mealPlanOrder`( `userId`, `mealPlanId`, `mealNum`, `firstName`, `lastName`, `address`, `apartmentNo`, `postalCode`, `city`, `province`, `phoneNum`, `startDate`, `deliveryTime`, `foodbankId`, `donationType`, `cardName`, `cardNum`, `expDate`, `cvvNum`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-$a = $stmt->execute([$_SESSION['userId'], $mealPlanId, $mealNum, $firstName, $lastName, $address, $apartmentNo, $postalCode, $city, $province,  $phoneNum, $startDate, $deliveryTime, $foodbankId, $donationType, $cardName, $cardNum, $expDate, $cvvNum]);
+$row = $stmt->execute([$_SESSION['userId'], $mealPlanId, $mealNum, $firstName, $lastName, $address, $apartmentNo, $postalCode, $city, $province,  $phoneNum, $startDate, $deliveryTime, $foodbankId, $donationType, $cardName, $cardNum, $expDate, $cvvNum]);
 
-
-var_dump($_POST);
-// if ($row){
-//     // header("Location: home.php");
-//     // $_SESSION['userId'] = $row['userId'];
-//     // $_SESSION['firstName'] = $row['firstName'];
-    
-// 	echo "SUCCESS!.";
+var_dump($row);
+if ($row){
+    header("Location: order-receipt.php");
+ 
 
 	
-// }else{
-//     // header("Location: register.php");
+}else{
 
-// 	echo "something went wrong, please try again.";
-// }
+	echo "something went wrong, please try again.";
+}
 
 
 

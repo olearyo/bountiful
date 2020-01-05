@@ -2,6 +2,10 @@
     include("includes/header.php");
 
 ?>
+<head>
+  <title>Logout</title>
+</head>
+
 
 
 <div class="form-box">
@@ -22,7 +26,7 @@
   </main>
 
   <?php
-    // include("includes/footer.php");
+    include("includes/footer.php");
 
 ?>
 

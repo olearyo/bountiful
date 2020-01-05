@@ -10,16 +10,13 @@ $password = $_POST['password'];
 
 include("includes/db-config.php");
 
-$stmt = $pdo->prepare("INSERT INTO `users` 
-	(`userId`, `firstName`, `lastName`, `email`, `password`) 
-	VALUES (NULL, '$firstName', '$lastName', '$email', '$password');");
+$stmt = $pdo->prepare("UPDATE `users` SET `firstName` = ?, `lastName` = ?, `email` = ?, `password` = ? WHERE `users`.`userId` = ?;");
 
-$row = $stmt->execute();
+$row = $stmt->execute([$firstName, $lastName, $email, $password, $_SESSION['userId']]);
 
 if ($row){
-    header("Location: home.php");
-    $_SESSION['userId'] = $row['userId'];
-	$_SESSION['firstName'] = $row['firstName'];
+    header("Location: profile.php");
+
 
 
 	

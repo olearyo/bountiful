@@ -2,6 +2,9 @@
     include("includes/header.php");
 
 ?>
+<head>
+  <title>Register</title>
+</head>
 
 
 <div class="form-box">
@@ -19,15 +22,17 @@
 					<input id="lastName" type="text" name="lastName" required />
 				</div>
 
-        <div class="form-input">
+        		<div class="form-input">
 				<label for="email">Email</label>
 					<input id="email" type="email" name="email" required />
 				</div>
 				
+
 				<div class="form-input">
 				<label for="password">Password</label>
 					<input id="password" type="password" name="password" required />
 				</div>
+
 
 				<div class="button-center">
            			<input class="button" type="submit" name="submit" value="register"/>
@@ -41,6 +46,6 @@
   </main>
 
   <?php
-    // include("includes/footer.php");
+    include("includes/footer.php");
 
 ?>

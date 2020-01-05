@@ -7,9 +7,11 @@
     $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `userId` = ?");
     
     $stmt->execute([$_SESSION['userId']]);
-    while($row = $stmt->fetch()) { ?>
+    $row = $stmt->fetch() ?>
 
-
+<head>
+  <title>Your profile</title>
+</head>
 
 <div class ="head">
 <h1>Hi <?php echo($row["firstName"]); ?>,</h1>
@@ -26,7 +28,7 @@
         </div>
 
     <?php
-    }
+
 
 $stmt = $pdo->prepare("SELECT * FROM `mealPlanOrder` WHERE `userId` = ?"); 
 $stmt->execute([$_SESSION['userId']]);
@@ -43,7 +45,13 @@ if($stmt->rowCount()==1){?>
                 </div>
 
                 <div class="form-input half">
-                    <p><?php echo($row["mealPlanId"]); ?><p>
+<?php
+        //show mealplan name
+        $mealPlan = $pdo->prepare("SELECT * FROM `mealPlanType` WHERE `mealPlanId` = ? "); 
+        $mealPlan->execute([$row["mealPlanId"]]); 
+        $mealPlan = $mealPlan ->fetch();
+?>
+                    <p><?php echo($mealPlan["mealPlanName"]); ?><p>
                     <p><?php echo($row["mealNum"]); ?> meals per week<p>
                     <p><?php echo($row["deliveryTime"]); ?><p>
                     <p>Active<p>
@@ -62,9 +70,14 @@ if($stmt->rowCount()==1){?>
                     <p>Donation To<p>
                     <p>Donation Type<p>
                 </div>
-
+<?php
+        //show foodbank name
+        $foodPlan = $pdo->prepare("SELECT * FROM `foodbanks` WHERE `foodbankId` = ? "); 
+        $foodPlan->execute([$row["foodbankId"]]); 
+        $foodPlan = $foodPlan ->fetch();
+?>
                 <div class="form-input half">
-                    <p><?php echo($row["foodbankId"]); ?><p>
+                    <p><?php echo($foodPlan["foodbankName"]); ?><p>
                     <p><?php echo($row["donationType"]); ?><p>
                 </div>
 
@@ -79,27 +92,24 @@ if($stmt->rowCount()==1){?>
 
         <p>You have not subscribed to a meal plan yet, would you like to order?
         <div class="button-center">
-            <button class="button" onclick="window.location.href = 'test3.php';">ORDER</button>
+            <button class="button" onclick="window.location.href = 'order.php';">ORDER</button>
         </div>
 </div>
-
-
-
-
-
-
 
 
 <?php
     }
     ?>
-  </main>
+
+
+</div>
+</main>
+
 
   <?php
-
-
-
-
-    // include("includes/footer.php");
+    include("includes/footer.php");
 
 ?>
+
+
+
